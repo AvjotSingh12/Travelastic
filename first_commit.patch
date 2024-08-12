@@ -1,0 +1,278 @@
+Subject: [PATCH] first commit
+---
+Index: pubspec.lock
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pubspec.lock b/pubspec.lock
+--- a/pubspec.lock	(revision 1737de0b3e52a0fe5331e7c74695109e72241f62)
++++ b/pubspec.lock	(date 1723457507813)
+@@ -49,6 +49,14 @@
+       url: "https://pub.dev"
+     source: hosted
+     version: "1.0.8"
++  dots_indicator:
++    dependency: transitive
++    description:
++      name: dots_indicator
++      sha256: f1599baa429936ba87f06ae5f2adc920a367b16d08f74db58c3d0f6e93bcdb5c
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.1.2"
+   fake_async:
+     dependency: transitive
+     description:
+@@ -62,6 +70,54 @@
+     description: flutter
+     source: sdk
+     version: "0.0.0"
++  flutter_keyboard_visibility:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility
++      sha256: "98664be7be0e3ffca00de50f7f6a287ab62c763fc8c762e0a21584584a3ff4f8"
++      url: "https://pub.dev"
++    source: hosted
++    version: "6.0.0"
++  flutter_keyboard_visibility_linux:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility_linux
++      sha256: "6fba7cd9bb033b6ddd8c2beb4c99ad02d728f1e6e6d9b9446667398b2ac39f08"
++      url: "https://pub.dev"
++    source: hosted
++    version: "1.0.0"
++  flutter_keyboard_visibility_macos:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility_macos
++      sha256: c5c49b16fff453dfdafdc16f26bdd8fb8d55812a1d50b0ce25fc8d9f2e53d086
++      url: "https://pub.dev"
++    source: hosted
++    version: "1.0.0"
++  flutter_keyboard_visibility_platform_interface:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility_platform_interface
++      sha256: e43a89845873f7be10cb3884345ceb9aebf00a659f479d1c8f4293fcb37022a4
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.0.0"
++  flutter_keyboard_visibility_web:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility_web
++      sha256: d3771a2e752880c79203f8d80658401d0c998e4183edca05a149f5098ce6e3d1
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.0.0"
++  flutter_keyboard_visibility_windows:
++    dependency: transitive
++    description:
++      name: flutter_keyboard_visibility_windows
++      sha256: fc4b0f0b6be9b93ae527f3d527fb56ee2d918cd88bbca438c478af7bcfd0ef73
++      url: "https://pub.dev"
++    source: hosted
++    version: "1.0.0"
+   flutter_lints:
+     dependency: "direct dev"
+     description:
+@@ -75,6 +131,19 @@
+     description: flutter
+     source: sdk
+     version: "0.0.0"
++  flutter_web_plugins:
++    dependency: transitive
++    description: flutter
++    source: sdk
++    version: "0.0.0"
++  introduction_screen:
++    dependency: "direct main"
++    description:
++      name: introduction_screen
++      sha256: "325f26e86fa3c3e86e6ab2bbc1fda860c9e6eae5ff29166fc2a3cab8f710d5b5"
++      url: "https://pub.dev"
++    source: hosted
++    version: "3.1.14"
+   leak_tracker:
+     dependency: transitive
+     description:
+@@ -139,6 +208,14 @@
+       url: "https://pub.dev"
+     source: hosted
+     version: "1.9.0"
++  plugin_platform_interface:
++    dependency: transitive
++    description:
++      name: plugin_platform_interface
++      sha256: "4820fbfdb9478b1ebae27888254d445073732dae3d6ea81f0b7e06d5dedc3f02"
++      url: "https://pub.dev"
++    source: hosted
++    version: "2.1.8"
+   sky_engine:
+     dependency: transitive
+     description: flutter
+Index: pubspec.yaml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/pubspec.yaml b/pubspec.yaml
+--- a/pubspec.yaml	(revision 1737de0b3e52a0fe5331e7c74695109e72241f62)
++++ b/pubspec.yaml	(date 1723456860510)
+@@ -30,6 +30,7 @@
+ dependencies:
+   flutter:
+     sdk: flutter
++  introduction_screen: ^3.1.14
+ 
+ 
+   # The following adds the Cupertino Icons font to your application.
+@@ -59,8 +60,8 @@
+   uses-material-design: true
+ 
+   # To add assets to your application, add an assets section, like this:
+-  # assets:
+-  #   - images/a_dot_burr.jpeg
++  assets:
++  - assets/images/
+   #   - images/a_dot_ham.jpeg
+ 
+   # An image asset can refer to one or more resolution-specific "variants", see
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/main.dart b/lib/main.dart
+--- a/lib/main.dart	(revision 1737de0b3e52a0fe5331e7c74695109e72241f62)
++++ b/lib/main.dart	(date 1723458730798)
+@@ -1,4 +1,5 @@
+ import 'package:flutter/material.dart';
++import 'Screens/SplashScreen.dart';
+ 
+ void main() {
+   runApp(const MyApp());
+@@ -11,115 +12,14 @@
+   @override
+   Widget build(BuildContext context) {
+     return MaterialApp(
++      debugShowCheckedModeBanner: false,
+       title: 'Flutter Demo',
+       theme: ThemeData(
+-        // This is the theme of your application.
+-        //
+-        // TRY THIS: Try running your application with "flutter run". You'll see
+-        // the application has a purple toolbar. Then, without quitting the app,
+-        // try changing the seedColor in the colorScheme below to Colors.green
+-        // and then invoke "hot reload" (save your changes or press the "hot
+-        // reload" button in a Flutter-supported IDE, or press "r" if you used
+-        // the command line to start the app).
+-        //
+-        // Notice that the counter didn't reset back to zero; the application
+-        // state is not lost during the reload. To reset the state, use hot
+-        // restart instead.
+-        //
+-        // This works for code too, not just values: Most code changes can be
+-        // tested with just a hot reload.
+-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+-        useMaterial3: true,
++        primarySwatch: Colors.blue,
+       ),
+-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+-    );
+-  }
+-}
+-
+-class MyHomePage extends StatefulWidget {
+-  const MyHomePage({super.key, required this.title});
+-
+-  // This widget is the home page of your application. It is stateful, meaning
+-  // that it has a State object (defined below) that contains fields that affect
+-  // how it looks.
+-
+-  // This class is the configuration for the state. It holds the values (in this
+-  // case the title) provided by the parent (in this case the App widget) and
+-  // used by the build method of the State. Fields in a Widget subclass are
+-  // always marked "final".
+-
+-  final String title;
+-
+-  @override
+-  State<MyHomePage> createState() => _MyHomePageState();
+-}
+-
+-class _MyHomePageState extends State<MyHomePage> {
+-  int _counter = 0;
++      home:  SplashScreen()
+ 
+-  void _incrementCounter() {
+-    setState(() {
+-      // This call to setState tells the Flutter framework that something has
+-      // changed in this State, which causes it to rerun the build method below
+-      // so that the display can reflect the updated values. If we changed
+-      // _counter without calling setState(), then the build method would not be
+-      // called again, and so nothing would appear to happen.
+-      _counter++;
+-    });
+-  }
++    );
+ 
+-  @override
+-  Widget build(BuildContext context) {
+-    // This method is rerun every time setState is called, for instance as done
+-    // by the _incrementCounter method above.
+-    //
+-    // The Flutter framework has been optimized to make rerunning build methods
+-    // fast, so that you can just rebuild anything that needs updating rather
+-    // than having to individually change instances of widgets.
+-    return Scaffold(
+-      appBar: AppBar(
+-        // TRY THIS: Try changing the color here to a specific color (to
+-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
+-        // change color while the other colors stay the same.
+-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+-        // Here we take the value from the MyHomePage object that was created by
+-        // the App.build method, and use it to set our appbar title.
+-        title: Text(widget.title),
+-      ),
+-      body: Center(
+-        // Center is a layout widget. It takes a single child and positions it
+-        // in the middle of the parent.
+-        child: Column(
+-          // Column is also a layout widget. It takes a list of children and
+-          // arranges them vertically. By default, it sizes itself to fit its
+-          // children horizontally, and tries to be as tall as its parent.
+-          //
+-          // Column has various properties to control how it sizes itself and
+-          // how it positions its children. Here we use mainAxisAlignment to
+-          // center the children vertically; the main axis here is the vertical
+-          // axis because Columns are vertical (the cross axis would be
+-          // horizontal).
+-          //
+-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
+-          // action in the IDE, or press "p" in the console), to see the
+-          // wireframe for each widget.
+-          mainAxisAlignment: MainAxisAlignment.center,
+-          children: <Widget>[
+-            const Text(
+-              'You have pushed the button this many times:',
+-            ),
+-            Text(
+-              '$_counter',
+-              style: Theme.of(context).textTheme.headlineMedium,
+-            ),
+-          ],
+-        ),
+-      ),
+-      floatingActionButton: FloatingActionButton(
+-        onPressed: _incrementCounter,
+-        tooltip: 'Increment',
+-        child: const Icon(Icons.add),
+-      ), // This trailing comma makes auto-formatting nicer for build methods.
+-    );
+   }
+-}
++}
+\ No newline at end of file
