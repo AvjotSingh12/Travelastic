@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:travelastic/Screens/ContactSalesScreen.dart';
+import 'package:travelastic/Screens/exploreScreen.dart';
 import 'package:travelastic/utils/ColorChange.dart';
 
 class Aboutusscreen extends StatelessWidget {
@@ -50,31 +52,45 @@ class Aboutusscreen extends StatelessWidget {
           const SizedBox(
             height: 140,
           ),
-          containers("For Business"),
-          containers("Workers"),
-          containers("Careers"),
-          containers("Contact Sales"),
+          InkWell(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Explorescreen()));
+              },
+              child: containers("For Business", context)),
+          containers("Workers", context),
+          containers("Careers", context),
+          InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => Contactsalesscreen()));
+              },
+              child: containers("Contact Sales", context)),
         ],
       ),
     );
   }
 
-  Padding containers(String t) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        height: 50,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [colorChanger("#098989"), colorChanger("#10EFEF")],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight)),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 30, top: 9),
-          child: Text(
-            t,
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+  Container containers(String t, BuildContext context) {
+    return Container(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Container(
+          height: 50,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [colorChanger("#098989"), colorChanger("#10EFEF")],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30, top: 9),
+            child: Text(
+              t,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
           ),
         ),
       ),

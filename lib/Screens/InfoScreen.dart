@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:travelastic/Screens/AboutUsScreen.dart';
 import 'package:travelastic/Screens/CeoScreen.dart';
+import 'package:travelastic/Screens/RolesScreen.dart';
 import 'package:travelastic/Screens/faqScreen.dart';
+import 'package:travelastic/Screens/jobsScreen.dart';
 import 'package:travelastic/utils/ColorChange.dart';
 import '../utils/infoPageContent.dart';
 
@@ -22,14 +24,18 @@ class Infoscreen extends StatelessWidget {
                   onSelected: (value) {
                     // Handle menu item selection
                     if (value == 'abouus') {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (_) => Aboutusscreen()));
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (context) => Aboutusscreen()));
                     } else if (value == 'objective') {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => const Rolesscreen()));
                       // Navigate to Settings
                     } else if (value == 'ceo') {
                       Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_) => Ceoscreen()));
                     } else if (value == 'job') {
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                          builder: (_) => const JobsScreen()));
                       // Handle Logout
                     } else if (value == 'faq') {
                       Navigator.of(context).pushReplacement(
@@ -38,7 +44,7 @@ class Infoscreen extends StatelessWidget {
                   },
                   itemBuilder: (BuildContext context) => [
                     customPopupMenuItem('abouus', 'About us'),
-                    customPopupMenuItem('objective ', 'Objective'),
+                    customPopupMenuItem('objective', 'Objective'),
                     customPopupMenuItem('ceo', 'CEO'),
                     customPopupMenuItem('job', 'job'),
                     customPopupMenuItem('faq', 'FAQ'),

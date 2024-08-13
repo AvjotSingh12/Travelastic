@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travelastic/Screens/AnswerScreen.dart';
 import 'package:travelastic/utils/ColorChange.dart';
 
 class FaqScreen extends StatelessWidget {
@@ -50,35 +51,41 @@ class FaqScreen extends StatelessWidget {
           const SizedBox(
             height: 140,
           ),
-          containers("What is Traba?"),
-          containers("Is Traba a tech company?"),
-          containers("Why join Traba?"),
-          containers("Is the Traba app legit?"),
-          containers("Who is the CEO of Traba?"),
-          containers("When was Traba founded?"),
-          containers("Is the Traba founded?"),
-          containers("What is an upshift company?"),
+          containers("What is Traba?", context),
+          containers("Is Traba a tech company?", context),
+          containers("Why join Traba?", context),
+          containers("Is the Traba app legit?", context),
+          containers("Who is the CEO of Traba?", context),
+          containers("When was Traba founded?", context),
+          containers("Is the Traba founded?", context),
+          containers("What is an upshift company?", context),
         ],
       ),
     );
   }
 
-  Padding containers(String t) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        height: 40,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [colorChanger("#098989"), colorChanger("#10EFEF")],
-                begin: Alignment.centerLeft,
-                end: Alignment.centerRight)),
-        child: Padding(
-          padding: const EdgeInsets.only(left: 30, top: 9),
-          child: Text(
-            t,
-            style: const TextStyle(color: Colors.white, fontSize: 20),
+  InkWell containers(String t, BuildContext context) {
+    return InkWell(
+      onTap: () {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => AnswerScreen(t: t)));
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 10),
+        child: Container(
+          height: 40,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [colorChanger("#098989"), colorChanger("#10EFEF")],
+                  begin: Alignment.centerLeft,
+                  end: Alignment.centerRight)),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30, top: 9),
+            child: Text(
+              t,
+              style: const TextStyle(color: Colors.white, fontSize: 20),
+            ),
           ),
         ),
       ),
